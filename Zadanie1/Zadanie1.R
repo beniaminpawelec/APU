@@ -82,5 +82,8 @@ pie(table(apple$status_opinii))
 paste(apple$Macbook, "ma ocene klientow", apple$ocena, "bo ma opinii", apple$liczba_opinie)
 
 write.csv(apple,'MacBooks.csv')
+<<<<<<< HEAD
 
 read.csv('MacBooks.csv')
+=======
+>>>>>>> 8d2d69349a5cc359c26fda33644a49241a7fabcc
