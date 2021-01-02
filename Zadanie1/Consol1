@@ -1,0 +1,191 @@
+> a <- 2 * log(5)
+> b <- a * 3
+> min(a,b)
+[1] 3.218876
+> a <- 25:45
+> mean(a)
+[1] 35
+> apropos("mean", mode = "function")
+ [1] ".colMeans"       ".rowMeans"       "colMeans"        "kmeans"         
+ [5] "mean"            "mean.Date"       "mean.default"    "mean.difftime"  
+ [9] "mean.POSIXct"    "mean.POSIXlt"    "raw.means.plot"  "raw.means.plot2"
+[13] "rowMeans"        "weighted.mean"  
+> setwd("~/Pulpit/Studia/APU/APU/Zadanie1/")
+> a <- "macbooki Apple"
+> save(a, file = "mac.RData")
+> remove(a)
+> a
+BŁĄD: nie znaleziono obiektu 'a'
+> load("mac.RData")
+> a
+[1] "macbooki Apple"
+> install.packages("gridExtra")
+Error in install.packages : Updating loaded packages
+> library(gridExtra)
+> help(package = "gridExtra")
+> grid.table(Orange[1:10, ])
+> seq(130, 200, 5)
+ [1] 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200
+> a <- 19:5
+> b <- 11:23
+> d <- c(b, a)
+> d
+ [1] 11 12 13 14 15 16 17 18 19 20 21 22 23 19 18 17 16 15 14 13 12 11 10  9  8
+[26]  7  6  5
+> Macbook <- c("mac1", "mac2", "mac3", "mac4", "mac5", "mac6","mac7", "mac8", "mac9", "mac10")
+> ekran <- c(17, 17, 17, 15,15,15,13,13,13,12)
+> pamięć_RAM <- c(17, 17, 17, 15,15,15,13,13,13,12)
+> dysk <- c(17, 17, 17, 15,15,15,13,13,13,12)
+> cena <- c(17, 17, 17, 15,15,15,13,13,13,12)
+> liczba_opinie <- c(17, 17, 17, 15,15,15,13,13,13,12)
+> apple <- data.frame(Macbook, ekran,pamięć_RAM, dysk,cena,liczba_opinie,stringsAsFactors = FALSE)
+> mean(apple$cena)
+[1] 14.7
+> newmac <- data.frame(Macbook = "mac11", ekran = 25, pamięć_RAM= 25,dysk= 25, cena = 25, liczba_opinie=25)
+> apple <- rbind(apple, newmac)
+> apple
+   Macbook ekran pamięć_RAM dysk cena liczba_opinie
+1     mac1    17         17   17   17            17
+2     mac2    17         17   17   17            17
+3     mac3    17         17   17   17            17
+4     mac4    15         15   15   15            15
+5     mac5    15         15   15   15            15
+6     mac6    15         15   15   15            15
+7     mac7    13         13   13   13            13
+8     mac8    13         13   13   13            13
+9     mac9    13         13   13   13            13
+10   mac10    12         12   12   12            12
+11   mac11    25         25   25   25            25
+> mean(apple$cena)
+[1] 15.63636
+> ocena <- c(0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,1)
+> ocena
+ [1] 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 1.0
+> apple <- cbind(apple, ocena)
+> apple$ocena
+ [1] 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 1.0
+> tapply(apple$cena, apple$ocena, mean)
+0.5   1 1.5   2 2.5   3 3.5   4 4.5   5 
+ 17  21  17  15  15  15  13  13  13  12 
+> Macbook <- c("mac20", "mac21", "mac22", "mac23")
+> ekran <- c(20,21,22,23)
+> pamięć_RAM <-  c(20,21,22,23)
+> dysk <-  c(20,21,22,23)
+> cena <-  c(20,21,22,23)
+> liczba_opinie <-  c(77,100,200,23)
+> ocena <- c(1,5,3,2)
+> newmacs <- data.frame(Macbook, ekran,pamięć_RAM, dysk,cena,liczba_opinie,ocena,stringsAsFactors = FALSE)
+> apple <- rbind(apple, newmacs)
+> apple
+   Macbook ekran pamięć_RAM dysk cena liczba_opinie ocena
+1     mac1    17         17   17   17            17   0.5
+2     mac2    17         17   17   17            17   1.0
+3     mac3    17         17   17   17            17   1.5
+4     mac4    15         15   15   15            15   2.0
+5     mac5    15         15   15   15            15   2.5
+6     mac6    15         15   15   15            15   3.0
+7     mac7    13         13   13   13            13   3.5
+8     mac8    13         13   13   13            13   4.0
+9     mac9    13         13   13   13            13   4.5
+10   mac10    12         12   12   12            12   5.0
+11   mac11    25         25   25   25            25   1.0
+12   mac20    20         20   20   20            77   1.0
+13   mac21    21         21   21   21           100   5.0
+14   mac22    22         22   22   22           200   3.0
+15   mac23    23         23   23   23            23   2.0
+> liczebnosc <- table(apple$ocena)
+> barplot(liczebnosc)
+> procenty <- liczebnosc / sum(liczebnosc)
+> pie(procenty)
+> install.packages("plotrix")
+Error in install.packages : Updating loaded packages
+> library(plotrix)
+> fan.plot(liczebnosc, labels = names(liczebnosc))
+> apple[, "status_opinii"] <- ifelse(apple$liczba_opinie >= 100, "więcej niz 100 opinii",
++                      ifelse(apple$liczba_opinie >= 50, "50 - 100 opinii",  
++                      ifelse((apple$liczba_opinie >= 0) & (apple$liczba_opinie <= 50), "mniej niz 50", "nie ma" )))
+> apple
+   Macbook ekran pamięć_RAM dysk cena liczba_opinie ocena
+1     mac1    17         17   17   17            17   0.5
+2     mac2    17         17   17   17            17   1.0
+3     mac3    17         17   17   17            17   1.5
+4     mac4    15         15   15   15            15   2.0
+5     mac5    15         15   15   15            15   2.5
+6     mac6    15         15   15   15            15   3.0
+7     mac7    13         13   13   13            13   3.5
+8     mac8    13         13   13   13            13   4.0
+9     mac9    13         13   13   13            13   4.5
+10   mac10    12         12   12   12            12   5.0
+11   mac11    25         25   25   25            25   1.0
+12   mac20    20         20   20   20            77   1.0
+13   mac21    21         21   21   21           100   5.0
+14   mac22    22         22   22   22           200   3.0
+15   mac23    23         23   23   23            23   2.0
+           status_opinii
+1           mniej niz 50
+2           mniej niz 50
+3           mniej niz 50
+4           mniej niz 50
+5           mniej niz 50
+6           mniej niz 50
+7           mniej niz 50
+8           mniej niz 50
+9           mniej niz 50
+10          mniej niz 50
+11          mniej niz 50
+12       50 - 100 opinii
+13 więcej niz 100 opinii
+14 więcej niz 100 opinii
+15          mniej niz 50
+> apple$status_opinii <- factor(apple$status_opinii)
+> pie(table(apple$status_opinii))
+> paste(apple$Macbook, "ma ocene klientow", apple$ocena, "bo ma opinii", apple$liczba_opinie)
+ [1] "mac1 ma ocene klientow 0.5 bo ma opinii 17"
+ [2] "mac2 ma ocene klientow 1 bo ma opinii 17"  
+ [3] "mac3 ma ocene klientow 1.5 bo ma opinii 17"
+ [4] "mac4 ma ocene klientow 2 bo ma opinii 15"  
+ [5] "mac5 ma ocene klientow 2.5 bo ma opinii 15"
+ [6] "mac6 ma ocene klientow 3 bo ma opinii 15"  
+ [7] "mac7 ma ocene klientow 3.5 bo ma opinii 13"
+ [8] "mac8 ma ocene klientow 4 bo ma opinii 13"  
+ [9] "mac9 ma ocene klientow 4.5 bo ma opinii 13"
+[10] "mac10 ma ocene klientow 5 bo ma opinii 12" 
+[11] "mac11 ma ocene klientow 1 bo ma opinii 25" 
+[12] "mac20 ma ocene klientow 1 bo ma opinii 77" 
+[13] "mac21 ma ocene klientow 5 bo ma opinii 100"
+[14] "mac22 ma ocene klientow 3 bo ma opinii 200"
+[15] "mac23 ma ocene klientow 2 bo ma opinii 23" 
+> write.csv(apple,'MacBooks.csv')
+> read.csv('MacBooks.csv')
+    X Macbook ekran pamięć_RAM dysk cena liczba_opinie ocena
+1   1    mac1    17         17   17   17            17   0.5
+2   2    mac2    17         17   17   17            17   1.0
+3   3    mac3    17         17   17   17            17   1.5
+4   4    mac4    15         15   15   15            15   2.0
+5   5    mac5    15         15   15   15            15   2.5
+6   6    mac6    15         15   15   15            15   3.0
+7   7    mac7    13         13   13   13            13   3.5
+8   8    mac8    13         13   13   13            13   4.0
+9   9    mac9    13         13   13   13            13   4.5
+10 10   mac10    12         12   12   12            12   5.0
+11 11   mac11    25         25   25   25            25   1.0
+12 12   mac20    20         20   20   20            77   1.0
+13 13   mac21    21         21   21   21           100   5.0
+14 14   mac22    22         22   22   22           200   3.0
+15 15   mac23    23         23   23   23            23   2.0
+           status_opinii
+1           mniej niz 50
+2           mniej niz 50
+3           mniej niz 50
+4           mniej niz 50
+5           mniej niz 50
+6           mniej niz 50
+7           mniej niz 50
+8           mniej niz 50
+9           mniej niz 50
+10          mniej niz 50
+11          mniej niz 50
+12       50 - 100 opinii
+13 więcej niz 100 opinii
+14 więcej niz 100 opinii
+15          mniej niz 50
